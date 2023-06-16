@@ -1,30 +1,79 @@
 package exercice;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-public class Exercice {
-    public static List<String> solution(String str, List<Character> ordre) {
-        List<String> words = Arrays.asList(str.split("[^a-zA-Z0-9]"));
-        List<String> sortedWords = new ArrayList<>();
-
-        for (char c : ordre) {
-            for (String word : words) {
-                if (!sortedWords.contains(word) && word.charAt(0) == c) {
-                    sortedWords.add(word);
+public class Exercice
+{
+    public static List<String> solution (String texte, List<Character> ordre){
+        //Déclaration et initialisation des attributs
+        StringBuilder mot= new StringBuilder();
+        List<String> listeMots= new ArrayList<String>();
+        List<String> listeTriee= new ArrayList<String>();
+        
+        // for (int i = 0; i < 1000000; i++) {
+        //     String tempString = new String("temp"); 
+        //     int[] largeArray = new int[100000000];
+        // }
+        //    for (int i = 0; i < 1000000; i++) {
+        //     String tempString = new String("temp"); 
+        //     int[] largeArray = new int[100000000];
+        // }   for (int i = 0; i < 1000000; i++) {
+        //     String tempString = new String("temp"); 
+        //     int[] largeArray = new int[100000000];
+        // }   for (int i = 0; i < 1000000; i++) {
+        //     String tempString = new String("temp"); 
+        //     int[] largeArray = new int[100000000];
+        // }   for (int i = 0; i < 1000000; i++) {
+        //     String tempString = new String("temp"); 
+        //     int[] largeArray = new int[100000000];
+        // }   for (int i = 0; i < 1000000; i++) {
+        //     String tempString = new String("temp"); 
+        //     int[] largeArray = new int[100000000];
+        // }   for (int i = 0; i < 1000000; i++) {
+        //     String tempString = new String("temp"); 
+        //     int[] largeArray = new int[100000000];
+        // }   for (int i = 0; i < 1000000; i++) {
+        //     String tempString = new String("temp"); 
+        //     int[] largeArray = new int[100000000];
+        // }   for (int i = 0; i < 1000000; i++) {
+        //     String tempString = new String("temp"); 
+        //     int[] largeArray = new int[100000000];
+        // }   for (int i = 0; i < 1000000; i++) {
+        //     String tempString = new String("temp"); 
+        //     int[] largeArray = new int[100000000];
+        // }   for (int i = 0; i < 1000000; i++) {
+        //     String tempString = new String("temp"); 
+        //     int[] largeArray = new int[100000000];
+        // }
+        
+        // Sépare le texte en mots
+        for (int i=0;i<texte.length();i++){
+            if (Character.isLetterOrDigit(texte.charAt(i))){
+                mot.append(texte.charAt(i));
+            }else if(mot.length()>0){
+                listeMots.add(mot.toString());
+                mot.setLength(0);
+            }
+        }
+        if (mot.length()>0){
+            listeMots.add(mot.toString());
+        }
+        // Trie les mots selon l'ordre spécifié
+        for (int i=0;i<ordre.size();i++){
+            String debut = ordre.get(i).toString();
+            for (int j=0;j<listeMots.size();j++){
+                if(listeMots.get(j).startsWith(debut)){
+                    listeTriee.add(listeMots.get(j));
+                    listeMots.remove(j);
+                    j--;
                 }
             }
         }
-        
-        for (String word : words) {
-            
-            if (!sortedWords.contains(word)) {
-                sortedWords.add(word);
-            }
+        for (int i=0;i<listeMots.size();i++){
+            listeTriee.add(listeMots.get(i));
         }
-
-        return sortedWords;
+        
+        
+        return listeTriee;
     }
-    
 }
+
